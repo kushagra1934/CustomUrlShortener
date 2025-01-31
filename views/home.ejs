@@ -7,6 +7,8 @@
   </head>
   <body>
     <h1>Hey From server grr</h1>
-    <%
+    <% urls.forEach(url => { %>
+    <li><%= url.shortId%></li>
+    <% }) %>
   </body>
 </html>
