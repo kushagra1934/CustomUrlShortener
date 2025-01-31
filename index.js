@@ -5,6 +5,7 @@ const path = require("path");
 const urlRoute = require("./routes/url");
 
 const URL = require("./models/url");
+const staticRoute = require("./routes/staticRouter");
 
 const app = express();
 const PORT = 8001;
@@ -17,13 +18,9 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-app.get("/test", async (req, res) => {
-  const allUrls = await URL.find({});
-  return res.render("home", {
-    urls: allUrls,
-  });
-});
+app.use("/", staticRoute);
 
 app.use("/url", urlRoute);
 
